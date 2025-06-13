@@ -1,0 +1,27 @@
+{
+  "version": "2.4.1",
+  "summary": {
+    "title": "Stellar-Pay Scenario based Threat Model",
+    "owner": "Tanatswa",
+    "description": "This threat model represents a web-based digital banking application based on the StellarPay scenario. The model was created using OWASP Threat Dragon and follows the STRIDE methodology to proactively identify and address potential security threats.\n\nThe model includes:\n\nCore components such as login forms, user accounts, payment APIs, and database servers.\n\nData flows between users, the application server, external banking systems, and third-party services.\n\nTrust boundaries that separate users, system components, and external entities.\n\nA detailed analysis of assets, entry points, and threats, helping to surface risks like spoofing, data tampering, and denial of service.\n\nThe goal of this model is to improve the application’s security posture before deployment by identifying vulnerabilities, proposing mitigations, and updating system design to reflect security best practices.\n\n",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Capitec-Based STRIDE Threat Model for StellarPay",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.4.1",
+        "cells": [],
+        "description": "This STRIDE diagram models security threats for a digital banking platform inspired by the Capitec mobile banking app, aligning with the StellarPay scenario. Using the STRIDE framework (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege), the diagram maps threats across key components such as the login system, API gateways, user account management, bank integrations, and mobile-to-server communication flows. It highlights potential attack vectors and trust boundaries found in real-world financial apps to guide threat mitigation and secure system design before deployment."
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "Mr Tshiyole",
+    "threatTop": 0
+  }
+}

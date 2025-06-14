@@ -38,6 +38,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -121,7 +122,6 @@
               ]
             },
             "id": "34ad303e-cd09-44c6-b185-55ec2f7b3682",
-            "zIndex": 1,
             "data": {
               "type": "tm.Process",
               "name": "Stellar Pay System",
@@ -150,13 +150,14 @@
                 "text": "Login Process"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -240,19 +241,53 @@
               ]
             },
             "id": "560d707d-1436-426c-872f-e7853ddd722c",
-            "zIndex": 3,
             "data": {
               "type": "tm.Process",
               "name": "Login Process",
-              "description": "",
+              "description": " Subprocess that performs credential checks and returns results.",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "3e5fcdee-6f77-4de8-a3a6-5a4ac81646d5",
+                  "title": "Denial Of Service",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "Slows down system via brut-force attack to figure out potential valid credentials or form spamming",
+                  "mitigation": "1. Appropriate authentication\n2. Appropriate authorization\n3. Filtering\n4. Throttling\n5. Quality of service",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                },
+                {
+                  "id": "15b91f56-fe78-496c-95aa-a7bd7d796ab4",
+                  "title": "Spoofing",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": " Login bypass through fake inputs, then poses as valid user",
+                  "mitigation": "1. Appropriate authentication\n2. Protect secret data\n3. Don’t store secrets",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 0
+              }
             }
           },
           {
@@ -269,13 +304,14 @@
                 "text": "Stella Pay database"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 4,
             "ports": {
               "groups": {
                 "top": {
@@ -359,19 +395,53 @@
               ]
             },
             "id": "c0bcc07f-ffb9-41c9-a8c3-b1e3e61b0302",
-            "zIndex": 4,
             "data": {
               "type": "tm.Process",
               "name": "Stella Pay database",
-              "description": "",
+              "description": "Main structured store for user accounts, sessions, and transaction data.",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "ec3794bd-7341-4a2d-99d5-aaf7cb2e5548",
+                  "title": "SQL injection",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "1. Appropriate authorization\n2. Hashes\n3. MACs\n4. Digital signatures\n5. Tamper resistant protocols",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                },
+                {
+                  "id": "d9e88bce-bd86-487e-a6ac-a30948c51a34",
+                  "title": "Information Disclosure",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Unencrypted data leaks.",
+                  "mitigation": "1. Authorization\n2. Privacy-enhanced protocols\n3. Encryption\n4. Protect secrets\n5. Don’t store secrets",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
             }
           },
           {
@@ -388,16 +458,19 @@
                 "text": "Stellar Pay Database Files"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 5,
             "ports": {
               "groups": {
                 "top": {
@@ -481,20 +554,46 @@
               ]
             },
             "id": "3d4fd252-41df-40fb-9462-c95d4fb8a678",
-            "zIndex": 5,
             "data": {
               "type": "tm.Store",
               "name": "Stellar Pay Database Files",
-              "description": "",
+              "description": "Raw data files storing backup or persistent system data.",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
-              "storesCredentials": false,
+              "storesCredentials": true,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "318d7e66-da9a-425d-8a4a-b574d4cb50a6",
+                  "title": "Information Disclosure",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Unprotected backups., make it easy for attacker to view",
+                  "mitigation": "1. Authorization\n2. Privacy-enhanced protocols\n3. Encryption\n4. Protect secrets\n5. Don’t store secrets",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -511,13 +610,14 @@
                 "text": "User"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 6,
             "ports": {
               "groups": {
                 "top": {
@@ -601,22 +701,52 @@
               ]
             },
             "id": "fe6fd633-232b-4944-a045-11d1c7d93e71",
-            "zIndex": 6,
             "data": {
               "type": "tm.Actor",
               "name": "User",
-              "description": "",
+              "description": "A registered or guest individual using the platform to log in and initiate transactions.",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": true,
-              "threats": []
+              "threats": [
+                {
+                  "id": "7fbd4cb1-4d0b-4492-b8a7-eace02be5f05",
+                  "title": "Credential Spoofing",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Attacker poses as a valid user, using stolen user credentials obtained",
+                  "mitigation": "Multi-Factor Authentication\nProtection of secret data\nCAPTCHA\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "d1dd59d8-a347-47e0-ab5e-7755cba562b9",
+                  "title": "Lack of Accountability",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Users deny connection to attacks due to poor logging processes",
+                  "mitigation": "1. Digital signatures\n2. Timestamps\n3. Audit trails",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 1
+              }
             }
           },
           {
             "position": {
-              "x": 120,
-              "y": 339
+              "x": 39.5,
+              "y": 359
             },
             "size": {
               "width": 112.5,
@@ -627,13 +757,14 @@
                 "text": "Bank"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 7,
             "ports": {
               "groups": {
                 "top": {
@@ -717,16 +848,46 @@
               ]
             },
             "id": "d0e3ed3f-5582-48bf-a1ed-3d19f8a66845",
-            "zIndex": 7,
             "data": {
               "type": "tm.Actor",
               "name": "Bank",
-              "description": "",
+              "description": "Third-party financial entity that validates transaction authenticity.",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "providesAuthentication": false,
-              "threats": []
+              "hasOpenThreats": true,
+              "providesAuthentication": true,
+              "threats": [
+                {
+                  "id": "eef2e16f-af0f-45ca-ac21-01a6996a3441",
+                  "title": "Spoofing",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": " Faked responses from an impersonated bank.",
+                  "mitigation": "1. Appropriate authentication\n2. Protect secret data\n3. Don’t store secrets",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                },
+                {
+                  "id": "6a65a0c7-3a96-4898-9e4e-c65916861331",
+                  "title": "Information Disclosure",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Intercepted validation responses.",
+                  "mitigation": "1.Encrypted API (HTTPS + mTLS)\n2. API keys\n3.digital signatures.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -743,13 +904,14 @@
                 "text": "Admin"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 8,
             "ports": {
               "groups": {
                 "top": {
@@ -833,16 +995,59 @@
               ]
             },
             "id": "f0019501-d986-4817-88df-725fe5821e83",
-            "zIndex": 8,
             "data": {
               "type": "tm.Actor",
               "name": "Admin",
-              "description": "",
+              "description": "An internal user with elevated privileges for querying and managing the system.",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "providesAuthentication": false,
-              "threats": []
+              "hasOpenThreats": true,
+              "providesAuthentication": true,
+              "threats": [
+                {
+                  "id": "8e33841c-a859-40b7-a477-4d279fc9df41",
+                  "title": "CAPTCHA defeat",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "User's escalate privileges due to lack of proper access controls",
+                  "mitigation": "Role-based Access\nRun with least privilege",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "ef7a614c-d658-4517-97ee-f135e6c92711",
+                  "title": "User privileges escalated",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "User's escalate privileges due to lack of proper access controls",
+                  "mitigation": "Role-based Access\nRun with least privilege",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                },
+                {
+                  "id": "95a81714-b4e7-42ed-a023-8497d430bdfb",
+                  "title": "Spoofing",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "User poses as admin to enter system",
+                  "mitigation": "1.Input Validation\n2. Multi Factor Authentication\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -1542,6 +1747,138 @@
                 "y": 430
               }
             ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Web system/ Database",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              "Web system/ Database"
+            ],
+            "id": "41c87598-a8b8-415d-9488-ebbac56cd73c",
+            "source": {
+              "x": 800,
+              "y": 290
+            },
+            "target": {
+              "x": 1160,
+              "y": 240
+            },
+            "vertices": [
+              {
+                "x": 870,
+                "y": 280
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "User/ Web-server",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              "User/ Web-server"
+            ],
+            "id": "4c2b39a3-45fd-4cff-b4c5-8c7fef60b32e",
+            "source": {
+              "x": 440,
+              "y": 210
+            },
+            "target": {
+              "x": 820,
+              "y": -160
+            },
+            "vertices": [
+              {
+                "x": 570,
+                "y": 90
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Bank/ Web-Server",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              "Bank/ Web-Server"
+            ],
+            "id": "ab010ca7-4071-4ae0-9dc2-43f7d627786a",
+            "source": {
+              "x": 0,
+              "y": 50
+            },
+            "target": {
+              "x": 290,
+              "y": 430
+            },
+            "vertices": [
+              {
+                "x": 130,
+                "y": 250
+              },
+              {
+                "x": 200,
+                "y": 350
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Admin/database",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              "Admin/database"
+            ],
+            "id": "725eecbf-2d1c-41b6-9bd9-d9c0e897a279",
+            "source": {
+              "x": 550,
+              "y": 740
+            },
+            "target": {
+              "x": 690,
+              "y": 370
+            },
+            "vertices": [
+              {
+                "x": 570,
+                "y": 680
+              }
+            ]
           }
         ],
         "description": "This STRIDE diagram models security threats for a digital banking platform inspired by the Capitec mobile banking app, aligning with the StellarPay scenario. Using the STRIDE framework (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege), the diagram maps threats across key components such as the login system, API gateways, user account management, bank integrations, and mobile-to-server communication flows. It highlights potential attack vectors and trust boundaries found in real-world financial apps to guide threat mitigation and secure system design before deployment."
@@ -1549,6 +1886,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "Mr Tshiyole",
-    "threatTop": 0
+    "threatTop": 12
   }
 }
